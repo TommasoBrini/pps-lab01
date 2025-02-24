@@ -2,6 +2,8 @@ package tdd.model;
 
 import tdd.SmartDoorLock;
 
+import java.io.IOException;
+
 public class SmartDoorLockImpl implements SmartDoorLock {
 
     private enum Status {
@@ -9,6 +11,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     }
 
     private static final int MAX_ATTEMPTS = 3;
+    private static final int DEFAULT_PIN = 0;
 
     private int pin;
     private Status status;
@@ -38,7 +41,11 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void lock() {
-        this.status = Status.LOCKED;
+        if(pin != DEFAULT_PIN){
+            this.status = Status.LOCKED;
+        } else {
+            throw new RuntimeException("Pin is not set");
+        }
     }
 
     @Override
