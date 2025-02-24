@@ -16,7 +16,9 @@ class SimpleBankAccountTest {
     private static final int FIRST_HOLDER_ID = 1;
     private static final int SECOND_HOLDER_ID = 2;
     private static final int WITHDRAW = 70;
+    private static final int NEGATE_WITHDRAW = 130;
     private static final int AMOUNT_ATTENDED = 30;
+
 
     private AccountHolder accountHolder;
     private BankAccount bankAccount;
@@ -56,6 +58,13 @@ class SimpleBankAccountTest {
     void testWrongWithdraw() {
         bankAccount.deposit(accountHolder.getId(), FIRST_DEPOSIT);
         bankAccount.withdraw(SECOND_HOLDER_ID, WITHDRAW);
+        assertEquals(FIRST_DEPOSIT, bankAccount.getBalance());
+    }
+
+    @Test
+    void testNegateWithdraw() {
+        bankAccount.deposit(accountHolder.getId(), FIRST_DEPOSIT);
+        bankAccount.withdraw(accountHolder.getId(), NEGATE_WITHDRAW);
         assertEquals(FIRST_DEPOSIT, bankAccount.getBalance());
     }
 }
