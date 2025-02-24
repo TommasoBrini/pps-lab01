@@ -10,7 +10,7 @@ public class SmartDoorLockTest {
 
     private static final int PIN = 1234;
     private static final int WRONG_PIN = 4321;
-    private static final int WRONG_ATTEMPS = 4;
+    private static final int WRONG_ATTEMPTS = 4;
 
     private SmartDoorLock smartDoorLock;
 
@@ -38,9 +38,16 @@ public class SmartDoorLockTest {
     }
 
     private void blockDoor(){
-        for (int i = 0; i < WRONG_ATTEMPS; i++) {
+        for (int i = 0; i < WRONG_ATTEMPTS; i++) {
             this.smartDoorLock.unlock(WRONG_PIN);
         }
+    }
+
+    @Test
+    public void testResetStatus(){
+        this.blockDoor();
+        smartDoorLock.reset();
+        assertTrue(smartDoorLock.isLocked());
     }
 
 }
