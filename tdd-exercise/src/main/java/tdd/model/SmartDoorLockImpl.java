@@ -2,7 +2,6 @@ package tdd.model;
 
 import tdd.SmartDoorLock;
 
-import java.io.IOException;
 
 public class SmartDoorLockImpl implements SmartDoorLock {
 
@@ -14,7 +13,6 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     private static final int DEFAULT_PIN = 0;
     private static final int INITIAL_ATTEMPTS = 0;
 
-
     private int pin;
     private Status status;
     private int attempts;
@@ -25,26 +23,33 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void setPin(int pin) {
-        this.pin = pin;
+        if(!this.isBlocked() && !this.isLocked()){
+            this.pin = pin;
+        } else {
+            throw new IllegalStateException("System is not open");
+        }
     }
 
     @Override
     public void unlock(int pin) {
-        if(this.checkPin(pin)) {
-            this.status = Status.UNLOCKED;
-            this.attempts = 0;
-        } else {
-            this.attempts += 1;
-            this.checkBlockDoor();
+        if(!this.isBlocked()){
+            if(this.checkPin(pin)) {
+                this.attempts = INITIAL_ATTEMPTS;
+                this.status = Status.UNLOCKED;
+            } else {
+                this.fail();
+            }
         }
     }
 
     @Override
     public void lock() {
-        if(pin != DEFAULT_PIN){
-            this.status = Status.LOCKED;
-        } else {
-            throw new RuntimeException("Pin is not set");
+        if(!this.isBlocked()){
+            if(pin != DEFAULT_PIN){
+                this.status = Status.LOCKED;
+            } else {
+                throw new IllegalStateException("Pin is not set");
+            }
         }
     }
 
@@ -79,7 +84,8 @@ public class SmartDoorLockImpl implements SmartDoorLock {
         return this.pin == pin;
     }
 
-    private void checkBlockDoor(){
+    private void fail(){
+        attempts += 1;
         if (this.attempts > MAX_ATTEMPTS){
             this.status = Status.BLOCKED;
         }
