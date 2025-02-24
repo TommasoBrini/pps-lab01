@@ -23,7 +23,9 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void unlock(int pin) {
-
+        if(this.checkPin(pin)) {
+            this.status = Status.UNLOCKED;
+        }
     }
 
     @Override
@@ -54,5 +56,9 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     @Override
     public void reset() {
 
+    }
+
+    private boolean checkPin(int pin){
+        return this.pin == pin;
     }
 }
