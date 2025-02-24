@@ -12,6 +12,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     private static final int MAX_ATTEMPTS = 3;
     private static final int DEFAULT_PIN = 0;
+    private static final int INITIAL_ATTEMPTS = 0;
 
     private int pin;
     private Status status;
@@ -20,7 +21,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     public SmartDoorLockImpl(int pin) {
         this.setPin(pin);
         this.lock();
-        this.attempts = 0;
+
     }
 
     @Override
@@ -70,7 +71,9 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void reset() {
-
+        this.attempts = INITIAL_ATTEMPTS;
+        this.status = Status.UNLOCKED;
+        this.pin = DEFAULT_PIN;
     }
 
     private boolean checkPin(int pin){

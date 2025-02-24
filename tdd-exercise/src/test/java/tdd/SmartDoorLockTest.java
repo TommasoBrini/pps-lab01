@@ -47,7 +47,7 @@ public class SmartDoorLockTest {
     public void testResetStatus(){
         this.blockDoor();
         smartDoorLock.reset();
-        assertTrue(smartDoorLock.isLocked());
+        assertFalse(smartDoorLock.isLocked());
     }
 
 }
