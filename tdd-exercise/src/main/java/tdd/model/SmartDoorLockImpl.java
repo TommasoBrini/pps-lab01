@@ -28,12 +28,12 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void lock() {
-
+        this.status = Status.LOCKED;
     }
 
     @Override
     public boolean isLocked() {
-        return false;
+        return this.status == Status.LOCKED;
     }
 
     @Override
