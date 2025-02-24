@@ -8,16 +8,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SmartDoorLockTest {
 
-    public static final int PIN = 1234;
+    private static final int PIN = 1234;
+
+    private SmartDoorLock smartDoorLock;
 
     @BeforeEach
     public void setup(){
-        SmartDoorLock smartDoorLock = new SmartDoorLockImpl(PIN);
+        smartDoorLock = new SmartDoorLockImpl(PIN);
     }
 
     @Test
-    public void todo() {
-        assertTrue(true);
+    public void testLock() {
+        this.smartDoorLock.lock();
+        assertTrue(smartDoorLock.isLocked());
     }
 
 }
