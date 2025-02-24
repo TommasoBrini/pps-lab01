@@ -14,14 +14,13 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     private static final int DEFAULT_PIN = 0;
     private static final int INITIAL_ATTEMPTS = 0;
 
+
     private int pin;
     private Status status;
     private int attempts;
 
-    public SmartDoorLockImpl(int pin) {
-        this.setPin(pin);
-        this.lock();
-
+    public SmartDoorLockImpl() {
+        this.reset();
     }
 
     @Override

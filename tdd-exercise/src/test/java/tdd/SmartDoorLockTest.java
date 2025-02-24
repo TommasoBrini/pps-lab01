@@ -16,7 +16,8 @@ public class SmartDoorLockTest {
 
     @BeforeEach
     public void setup(){
-        this.smartDoorLock = new SmartDoorLockImpl(PIN);
+        this.smartDoorLock = new SmartDoorLockImpl();
+        this.smartDoorLock.setPin(PIN);
     }
 
     @Test
