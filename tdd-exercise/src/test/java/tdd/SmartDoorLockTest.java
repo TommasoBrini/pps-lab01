@@ -11,6 +11,7 @@ public class SmartDoorLockTest {
     private static final int PIN = 1234;
     private static final int WRONG_PIN = 4321;
     private static final int WRONG_ATTEMPTS = 4;
+    private static final int RESET_ATTEMPTS = 0;
 
     private SmartDoorLock smartDoorLock;
 
@@ -38,6 +39,13 @@ public class SmartDoorLockTest {
         assertTrue(this.smartDoorLock.isBlocked());
     }
 
+    @Test
+    public void testBlockedBehaviour(){
+        this.blockDoor();
+        smartDoorLock.lock();
+        assertFalse(smartDoorLock.isLocked());
+    }
+
     private void blockDoor(){
         for (int i = 0; i < WRONG_ATTEMPTS; i++) {
             this.smartDoorLock.unlock(WRONG_PIN);
@@ -48,7 +56,7 @@ public class SmartDoorLockTest {
     public void testResetStatus(){
         this.blockDoor();
         smartDoorLock.reset();
-        assertFalse(smartDoorLock.isLocked());
+        assertEquals(smartDoorLock.getFailedAttempts(), RESET_ATTEMPTS);
     }
 
 }
