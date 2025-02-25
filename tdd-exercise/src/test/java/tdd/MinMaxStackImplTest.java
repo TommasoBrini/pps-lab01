@@ -72,4 +72,14 @@ class MinMaxStackImplTest {
         this.minMaxStack.pop();
         assertEquals(minMaxStack.getMax(), MAX_VALUE - 1);
     }
+
+    @Test
+    public void testMinAfterPop(){
+        this.clearStack();
+        this.minMaxStack.push(2);
+        this.minMaxStack.push(5);
+        this.minMaxStack.push(0);
+        this.minMaxStack.pop();
+        assertEquals(this.minMaxStack.getMin(), 2);
+    }
 }
