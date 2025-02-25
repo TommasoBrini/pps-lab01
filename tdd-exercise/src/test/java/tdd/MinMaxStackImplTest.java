@@ -10,6 +10,7 @@ class MinMaxStackImplTest {
 
     private static final int INITIAL_SIZE = 5;
     private static final int MIN_VALUE = 0;
+    private static final int MAX_VALUE = INITIAL_SIZE - 1;
 
     MinMaxStack minMaxStack;
 
@@ -55,6 +56,13 @@ class MinMaxStackImplTest {
     @Test
     public void testMin(){
         assertEquals(minMaxStack.getMin(), MIN_VALUE);
+        clearStack();
+        assertThrowsExactly(IllegalStateException.class, () -> minMaxStack.getMin());
+    }
+
+    @Test
+    public void testMax(){
+        assertEquals(minMaxStack.getMax(), MAX_VALUE);
         clearStack();
         assertThrowsExactly(IllegalStateException.class, () -> minMaxStack.getMin());
     }
