@@ -22,13 +22,15 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public void push(int value) {
-        this.checkMin(value);
+        this.checkMinMax(value);
         this.stack.add(value);
     }
 
-    private void checkMin(int value){
+    private void checkMinMax(int value){
         if (value < this.min) {
             this.min = value;
+        } else if (value > this.max) {
+            this.max = value;
         }
     }
 
@@ -62,7 +64,8 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int getMax() {
-        return 0;
+        checkNotEmpty();
+        return max;
     }
 
     @Override
