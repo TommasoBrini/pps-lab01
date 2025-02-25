@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MinMaxStackImplTest {
 
+    private static final int INITIAL_SIZE = 5;
+
     MinMaxStack minMaxStack;
 
     @BeforeEach
@@ -17,13 +19,18 @@ class MinMaxStackImplTest {
     }
 
     private void populate(){
-        minMaxStack.push(1);
-        minMaxStack.push(2);
-        minMaxStack.push(3);
+        for(int i = 0; i < INITIAL_SIZE; i++){
+            minMaxStack.push(i);
+        }
     }
 
     @Test
     public void testEmpty() {
         assertFalse(minMaxStack.isEmpty());
+    }
+
+    @Test
+    public void testPop() {
+        assertAll(() -> assertEquals(minMaxStack.pop(), 4), () -> assertEquals(minMaxStack.size(), INITIAL_SIZE - 1));
     }
 }

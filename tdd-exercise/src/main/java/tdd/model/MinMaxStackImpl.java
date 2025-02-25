@@ -21,9 +21,18 @@ public class MinMaxStackImpl implements MinMaxStack {
         stack.add(value);
     }
 
+    private int topOfStackIndex() {
+        if(this.isEmpty()){
+            throw new IllegalStateException("Stack is empty");
+        }
+        return this.size() - 1;
+    }
+
     @Override
     public int pop() {
-        return 0;
+        int value = this.stack.remove(topOfStackIndex());
+
+        return value;
     }
 
     @Override
@@ -48,6 +57,6 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int size() {
-        return 0;
+        return stack.size();
     }
 }
