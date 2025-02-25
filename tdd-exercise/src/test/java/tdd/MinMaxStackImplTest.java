@@ -33,12 +33,12 @@ class MinMaxStackImplTest {
 
     @Test
     public void testPop() {
-        assertAll(() -> assertEquals(this.minMaxStack.pop(), INITIAL_SIZE - 1), () -> assertEquals(this.minMaxStack.size(), INITIAL_SIZE - 1));
+        assertAll(() -> assertEquals(INITIAL_SIZE - 1, this.minMaxStack.pop()), () -> assertEquals(INITIAL_SIZE - 1, this.minMaxStack.size()));
     }
 
     @Test
     public void testPeek() {
-        assertAll(() -> assertEquals(this.minMaxStack.peek(), INITIAL_SIZE - 1), () -> assertEquals(this.minMaxStack.size(), INITIAL_SIZE));
+        assertAll(() -> assertEquals(INITIAL_SIZE - 1, this.minMaxStack.peek()), () -> assertEquals(INITIAL_SIZE, this.minMaxStack.size()));
     }
 
     private void clearStack() {
@@ -55,14 +55,14 @@ class MinMaxStackImplTest {
 
     @Test
     public void testMin(){
-        assertEquals(this.minMaxStack.getMin(), MIN_VALUE);
+        assertEquals(MIN_VALUE, this.minMaxStack.getMin());
         this.clearStack();
         assertThrowsExactly(IllegalStateException.class, () -> this.minMaxStack.getMin());
     }
 
     @Test
     public void testMax(){
-        assertEquals(this.minMaxStack.getMax(), MAX_VALUE);
+        assertEquals(MAX_VALUE, this.minMaxStack.getMax());
         this.clearStack();
         assertThrowsExactly(IllegalStateException.class, () -> this.minMaxStack.getMin());
     }
@@ -70,7 +70,7 @@ class MinMaxStackImplTest {
     @Test
     public void testMaxAfterPop(){
         this.minMaxStack.pop();
-        assertEquals(minMaxStack.getMax(), MAX_VALUE - 1);
+        assertEquals(MAX_VALUE - 1, minMaxStack.getMax());
     }
 
     @Test
@@ -80,6 +80,6 @@ class MinMaxStackImplTest {
         this.minMaxStack.push(5);
         this.minMaxStack.push(0);
         this.minMaxStack.pop();
-        assertEquals(this.minMaxStack.getMin(), 2);
+        assertEquals(2, this.minMaxStack.getMin());
     }
 }

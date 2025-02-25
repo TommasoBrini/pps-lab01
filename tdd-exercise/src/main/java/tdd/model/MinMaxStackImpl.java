@@ -35,7 +35,7 @@ public class MinMaxStackImpl implements MinMaxStack {
     }
 
     private int topOfStackIndex() {
-        checkNotEmpty();
+        this.checkNotEmpty();
         return this.size() - 1;
     }
 
@@ -49,11 +49,11 @@ public class MinMaxStackImpl implements MinMaxStack {
     public int pop() {
         int value = this.stack.remove(topOfStackIndex());
 
-        if (value == max) {
+        if (value == this.max) {
             this.calculateMax();
         }
 
-        if (value == min) {
+        if (value == this.min) {
             this.calculateMin();
         }
 
@@ -81,23 +81,23 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int getMin() {
-        checkNotEmpty();
-        return min;
+        this.checkNotEmpty();
+        return this.min;
     }
 
     @Override
     public int getMax() {
-        checkNotEmpty();
-        return max;
+        this.checkNotEmpty();
+        return this.max;
     }
 
     @Override
     public boolean isEmpty() {
-        return stack.isEmpty();
+        return this.stack.isEmpty();
     }
 
     @Override
     public int size() {
-        return stack.size();
+        return this.stack.size();
     }
 }
