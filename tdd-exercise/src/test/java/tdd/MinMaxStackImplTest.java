@@ -31,6 +31,11 @@ class MinMaxStackImplTest {
 
     @Test
     public void testPop() {
-        assertAll(() -> assertEquals(minMaxStack.pop(), 4), () -> assertEquals(minMaxStack.size(), INITIAL_SIZE - 1));
+        assertAll(() -> assertEquals(minMaxStack.pop(), INITIAL_SIZE - 1), () -> assertEquals(minMaxStack.size(), INITIAL_SIZE - 1));
+    }
+
+    @Test
+    public void testPeek() {
+        assertAll(() -> assertEquals(minMaxStack.peek(), INITIAL_SIZE - 1), () -> assertEquals(minMaxStack.size(), INITIAL_SIZE));
     }
 }
