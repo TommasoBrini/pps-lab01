@@ -43,6 +43,10 @@ public class CircularListTest {
         assertEquals(0, circularQueue.remove());
     }
 
-
+    @Test
+    public void testPushMoreElement() {
+        this.populate(SIZE + 3);
+        assertEquals(3, circularQueue.remove());
+    }
 
 }
