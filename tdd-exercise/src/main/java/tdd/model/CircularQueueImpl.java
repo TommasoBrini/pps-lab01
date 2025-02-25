@@ -7,6 +7,7 @@ import java.util.List;
 
 public class CircularQueueImpl implements CircularQueue {
 
+    private static final int INDEX_TO_REMOVED = 0;
     private final List<Integer> queue;
     private final int maxSize;
 
@@ -19,6 +20,14 @@ public class CircularQueueImpl implements CircularQueue {
     @Override
     public void push(int value) {
         queue.add(value);
+    }
+
+    @Override
+    public int remove() {
+        if (isEmpty()){
+            throw new IllegalStateException("Queue is empty");
+        }
+        return queue.remove(INDEX_TO_REMOVED);
     }
 
     @Override

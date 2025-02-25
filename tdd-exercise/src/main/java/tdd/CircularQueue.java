@@ -15,13 +15,21 @@ package tdd;
  */
 public interface CircularQueue {
 
-
     /**
      * Pushes an integer onto the queue.
      *
      * @param value The integer to push.
      */
     void push(int value);
+
+
+    /**
+     * Removes and returns the first element of the queue.
+     *
+     * @return The removed element.
+     * @throws IllegalStateException if the queue is empty.
+     */
+    int remove();
 
     /**
      * Checks if the queue is empty.
