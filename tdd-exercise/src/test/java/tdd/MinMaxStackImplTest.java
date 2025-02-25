@@ -12,58 +12,63 @@ class MinMaxStackImplTest {
     private static final int MIN_VALUE = 0;
     private static final int MAX_VALUE = INITIAL_SIZE - 1;
 
-    MinMaxStack minMaxStack;
+    private MinMaxStack minMaxStack;
 
     @BeforeEach
     public void setup(){
-        minMaxStack = new MinMaxStackImpl();
+        this.minMaxStack = new MinMaxStackImpl();
         this.populate();
     }
 
     private void populate(){
         for(int i = MIN_VALUE; i < INITIAL_SIZE; i++){
-            minMaxStack.push(i);
+            this.minMaxStack.push(i);
         }
     }
 
     @Test
     public void testEmpty() {
-        assertFalse(minMaxStack.isEmpty());
+        assertFalse(this.minMaxStack.isEmpty());
     }
 
     @Test
     public void testPop() {
-        assertAll(() -> assertEquals(minMaxStack.pop(), INITIAL_SIZE - 1), () -> assertEquals(minMaxStack.size(), INITIAL_SIZE - 1));
+        assertAll(() -> assertEquals(this.minMaxStack.pop(), INITIAL_SIZE - 1), () -> assertEquals(this.minMaxStack.size(), INITIAL_SIZE - 1));
     }
 
     @Test
     public void testPeek() {
-        assertAll(() -> assertEquals(minMaxStack.peek(), INITIAL_SIZE - 1), () -> assertEquals(minMaxStack.size(), INITIAL_SIZE));
+        assertAll(() -> assertEquals(this.minMaxStack.peek(), INITIAL_SIZE - 1), () -> assertEquals(this.minMaxStack.size(), INITIAL_SIZE));
     }
 
     private void clearStack() {
         for (int i = 0; i < INITIAL_SIZE; i++){
-            minMaxStack.pop();
+            this.minMaxStack.pop();
         }
     }
 
     @Test
     public void testPopEmptyStack() {
-        clearStack();
-        assertThrowsExactly(IllegalStateException.class, () -> minMaxStack.pop());
+        this.clearStack();
+        assertThrowsExactly(IllegalStateException.class, () -> this.minMaxStack.pop());
     }
 
     @Test
     public void testMin(){
-        assertEquals(minMaxStack.getMin(), MIN_VALUE);
-        clearStack();
-        assertThrowsExactly(IllegalStateException.class, () -> minMaxStack.getMin());
+        assertEquals(this.minMaxStack.getMin(), MIN_VALUE);
+        this.clearStack();
+        assertThrowsExactly(IllegalStateException.class, () -> this.minMaxStack.getMin());
     }
 
     @Test
     public void testMax(){
-        assertEquals(minMaxStack.getMax(), MAX_VALUE);
-        clearStack();
-        assertThrowsExactly(IllegalStateException.class, () -> minMaxStack.getMin());
+        assertEquals(this.minMaxStack.getMax(), MAX_VALUE);
+        this.clearStack();
+        assertThrowsExactly(IllegalStateException.class, () -> this.minMaxStack.getMin());
+    }
+
+    @Test
+    public void testMaxAfterPop(){
+        this.minMaxStack.pop();
     }
 }
