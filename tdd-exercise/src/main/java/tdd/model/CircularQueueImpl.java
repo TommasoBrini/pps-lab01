@@ -19,7 +19,14 @@ public class CircularQueueImpl implements CircularQueue {
 
     @Override
     public void push(int value) {
+        this.checkSize();
         queue.add(value);
+    }
+
+    private void checkSize(){
+        if(this.size() == this.maxSize){
+            this.remove();
+        }
     }
 
     @Override
