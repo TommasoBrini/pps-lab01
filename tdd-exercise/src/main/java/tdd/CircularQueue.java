@@ -44,4 +44,5 @@ public interface CircularQueue {
      * @return The current size of the queue.
      */
     int size();
+
 }

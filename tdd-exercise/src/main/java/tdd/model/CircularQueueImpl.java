@@ -16,7 +16,6 @@ public class CircularQueueImpl implements CircularQueue {
         this.queue = new ArrayList<>();
     }
 
-
     @Override
     public void push(int value) {
         this.checkSize();
@@ -46,4 +45,5 @@ public class CircularQueueImpl implements CircularQueue {
     public int size() {
         return queue.size();
     }
+
 }
