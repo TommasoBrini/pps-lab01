@@ -20,6 +20,12 @@ public class CircularListTest {
         circularQueue = new CircularQueueImpl(SIZE);
     }
 
+    private void populate(int size){
+        for (int i = 0; i < size; i++) {
+            circularQueue.push(i);
+        }
+    }
+
     @Test
     public void testEmpty(){
         assertTrue(circularQueue.isEmpty());
@@ -30,5 +36,13 @@ public class CircularListTest {
         circularQueue.push(1);
         assertEquals(1, circularQueue.size());
     }
+
+    @Test
+    public void testRemove() {
+        this.populate(SIZE);
+        assertEquals(0, circularQueue.remove());
+    }
+
+
 
 }
