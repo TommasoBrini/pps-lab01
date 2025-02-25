@@ -48,7 +48,17 @@ public class MinMaxStackImpl implements MinMaxStack {
     @Override
     public int pop() {
         int value = this.stack.remove(topOfStackIndex());
+        if (value == max) {
+            this.calculateMax();
+        }
         return value;
+    }
+
+    private void calculateMax(){
+        this.max = MAX_VALUE;
+        for(int value : this.stack) {
+            this.max = Math.max(value, this.max);
+        }
     }
 
     @Override
