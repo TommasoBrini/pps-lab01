@@ -38,4 +38,12 @@ class MinMaxStackImplTest {
     public void testPeek() {
         assertAll(() -> assertEquals(minMaxStack.peek(), INITIAL_SIZE - 1), () -> assertEquals(minMaxStack.size(), INITIAL_SIZE));
     }
+
+    @Test
+    public void testPopEmptyStack() {
+        for (int i = 0; i < INITIAL_SIZE; i++){
+            minMaxStack.pop();
+        }
+        assertThrowsExactly(IllegalStateException.class, () -> minMaxStack.pop());
+    }
 }
