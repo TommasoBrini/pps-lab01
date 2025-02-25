@@ -1,9 +1,10 @@
 package tdd;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tdd.model.CircularQueueImpl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -24,10 +25,10 @@ public class CircularListTest {
         assertTrue(circularQueue.isEmpty());
     }
 
-
     @Test
     public void testPush() {
         circularQueue.push(1);
-        assertTrue(1, circularQueue.size());
+        assertEquals(1, circularQueue.size());
     }
+
 }
