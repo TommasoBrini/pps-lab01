@@ -70,5 +70,6 @@ class MinMaxStackImplTest {
     @Test
     public void testMaxAfterPop(){
         this.minMaxStack.pop();
+        assertEquals(minMaxStack.getMax(), MAX_VALUE - 1);
     }
 }
