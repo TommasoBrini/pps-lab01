@@ -7,31 +7,45 @@ import java.util.List;
 
 public class MinMaxStackImpl implements MinMaxStack {
 
-    private List<Integer> stack;
+    private static final int MAX_VALUE = -9999;
+    private static final int MIN_VALUE = 9999;
+
+    private final List<Integer> stack;
 
     private int min;
     private int max;
 
     public MinMaxStackImpl() {
-        stack = new ArrayList<>();
+        this.stack = new ArrayList<>();
+        this.min = MIN_VALUE;
     }
 
     @Override
     public void push(int value) {
-        stack.add(value);
+        this.checkMin(value);
+        this.stack.add(value);
+    }
+
+    private void checkMin(int value){
+        if (value < this.min) {
+            this.min = value;
+        }
     }
 
     private int topOfStackIndex() {
+        checkNotEmpty();
+        return this.size() - 1;
+    }
+
+    private void checkNotEmpty(){
         if(this.isEmpty()){
             throw new IllegalStateException("Stack is empty");
         }
-        return this.size() - 1;
     }
 
     @Override
     public int pop() {
         int value = this.stack.remove(topOfStackIndex());
-
         return value;
     }
 
@@ -42,7 +56,8 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int getMin() {
-        return 0;
+        checkNotEmpty();
+        return min;
     }
 
     @Override
