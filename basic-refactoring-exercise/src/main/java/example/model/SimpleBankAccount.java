@@ -28,7 +28,7 @@ public class SimpleBankAccount implements BankAccount {
 
     @Override
     public void deposit(final int userID, final double amount) {
-        if (checkUser(userID)) {
+        if (this.checkUser(userID)) {
             this.balance += amount;
         }
     }
@@ -36,7 +36,7 @@ public class SimpleBankAccount implements BankAccount {
     @Override
     public void withdraw(final int userID, final double amount) {
         double taxedAmount = this.applyFee(amount);
-        if (checkUser(userID) && isWithdrawAllowed(taxedAmount)) {
+        if (this.checkUser(userID) && this.isWithdrawAllowed(taxedAmount)) {
             this.balance -= taxedAmount;
         }
     }

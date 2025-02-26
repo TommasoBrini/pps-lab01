@@ -19,7 +19,7 @@ public class CircularQueueImpl implements CircularQueue {
     @Override
     public void push(int value) {
         this.checkSize();
-        queue.add(value);
+        this.queue.add(value);
     }
 
     private void checkSize(){
@@ -30,20 +30,20 @@ public class CircularQueueImpl implements CircularQueue {
 
     @Override
     public int remove() {
-        if (isEmpty()){
+        if (this.isEmpty()){
             throw new IllegalStateException("Queue is empty");
         }
-        return queue.remove(INDEX_TO_REMOVED);
+        return this.queue.remove(INDEX_TO_REMOVED);
     }
 
     @Override
     public boolean isEmpty() {
-        return queue.isEmpty();
+        return this.queue.isEmpty();
     }
 
     @Override
     public int size() {
-        return queue.size();
+        return this.queue.size();
     }
 
 }

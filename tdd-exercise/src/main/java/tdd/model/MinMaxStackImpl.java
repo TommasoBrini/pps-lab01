@@ -27,11 +27,8 @@ public class MinMaxStackImpl implements MinMaxStack {
     }
 
     private void checkMinMax(int value){
-        if (value < this.min) {
-            this.min = value;
-        } else if (value > this.max) {
-            this.max = value;
-        }
+        this.min = Math.min(this.min, value);
+        this.max = Math.max(this.max, value);
     }
 
     private int topOfStackIndex() {
@@ -47,7 +44,7 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int pop() {
-        int value = this.stack.remove(topOfStackIndex());
+        int value = this.stack.remove(this.topOfStackIndex());
 
         if (value == this.max) {
             this.calculateMax();
@@ -76,7 +73,7 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int peek() {
-        return this.stack.get(topOfStackIndex());
+        return this.stack.get(this.topOfStackIndex());
     }
 
     @Override

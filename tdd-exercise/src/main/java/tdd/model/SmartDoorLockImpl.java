@@ -25,7 +25,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     @Override
     public void setPin(int pin) {
         if(!this.isBlocked() && !this.isLocked()){
-            if(checkPin(pin)){
+            if(this.checkPin(pin)){
                 throw new IllegalArgumentException("Pin must be 4-digit number");
             }
             this.pin = pin;
@@ -79,7 +79,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public int getFailedAttempts() {
-        return attempts;
+        return this.attempts;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     }
 
     private void fail(){
-        attempts += 1;
+        this.attempts += 1;
         if (this.attempts > MAX_ATTEMPTS){
             this.status = Status.BLOCKED;
         }
